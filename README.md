@@ -48,4 +48,4 @@ elif key and key[0] and key[1] and key[2] and em_ext == '.aiml' and self._check_
 
 ```
 
-![效果截图](https://github.com/xiaopangxia/aiml_cn/blob/master/image/screenshot.PNG)
+![效果截图](https://raw.githubusercontent.com/xiaopangxia/aiml_cn/master/image/screenshot.PNG)
