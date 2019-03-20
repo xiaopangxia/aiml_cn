@@ -326,9 +326,9 @@ class Kernel:
                 return False
         return True
 
-    def one_plus_strick(self, pattern_with_pound):
+    def zero_plus_strick(self, pattern_with_pound):
         """
-        a simple way for implement 1+ with # in pattern str
+        a simple way for implement 0+ with # in pattern str
         :param pattern_with_pound:
         :return:
         """
@@ -374,9 +374,9 @@ class Kernel:
                 # print(new_key)
                 self._brain.add(new_key, tem)
 
-                # add more pattern with # represent 1+
+                # add more pattern with # represent 0+
                 if '#' in new_key[0]:
-                    more_pattern_list = self.one_plus_strick(new_key[0])
+                    more_pattern_list = self.zero_plus_strick(new_key[0])
                     for pattern in more_pattern_list:
                         pattern = pattern.replace('  ', ' ')
                         more_key = (pattern, new_key[1], new_key[2])
