@@ -326,6 +326,23 @@ class Kernel:
                 return False
         return True
 
+    def one_plus_strick(self, pattern_with_pound):
+        """
+        a simple way for implement 1+ with # in pattern str
+        :param pattern_with_pound:
+        :return:
+        """
+        seg_list = pattern_with_pound.split('#')
+        now_key_list = [seg_list[0]]
+        for seg in seg_list[1:]:
+            new_key_list = []
+            for now_key in now_key_list:
+                new_key_list.append(now_key+'*'+seg)
+                new_key_list.append(now_key+seg)
+            now_key_list = new_key_list
+        return now_key_list
+
+
     def learn(self, filename):
         """Load and learn the contents of the specified AIML file.
 
@@ -356,9 +373,18 @@ class Kernel:
 
                 # print(new_key)
                 self._brain.add(new_key, tem)
+
+                # add more pattern with # represent 1+
+                if '#' in new_key[0]:
+                    more_pattern_list = self.one_plus_strick(new_key[0])
+                    for pattern in more_pattern_list:
+                        pattern = pattern.replace('  ', ' ')
+                        more_key = (pattern, new_key[1], new_key[2])
+                        self._brain.add(more_key, tem)
+
             # Parsing was successful.
             if self._verboseMode:
-                print( "done (%.2f seconds)" % (time.clock() - start) )
+                print("done (%.2f seconds)" % (time.clock() - start))
 
     def respond(self, input_, sessionID = _globalSessionID):
         """Return the Kernel's response to the input string."""
